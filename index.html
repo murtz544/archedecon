@@ -104,15 +104,64 @@ ul{margin:8px 0 0 18px}
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(37,99,235,0.35);
 }
+
+/* Bigger logos on desktop, responsive downwards */
+.grid.cols-4 { 
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr)); /* larger cells */
+  gap: 24px;
+}
+
+/* XL screens: even roomier */
+@media (min-width: 1280px) {
+  .grid.cols-4 { grid-template-columns: repeat(4, minmax(280px, 1fr)); }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .grid.cols-4 { grid-template-columns: repeat(3, minmax(200px, 1fr)); }
+}
+
+/* Large phones */
+@media (max-width: 768px) {
+  .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .grid.cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Cards + images */
+#clients .card {
+  padding: 20px;
+  display: grid;
+  place-items: center;
+  min-height: 140px;                    /* gives logos room to breathe */
+}
+
+/* Let logos grow on desktop, but cap them on small screens */
+.client-logo {
+  width: 100%;
+  height: auto;
+  max-width: 420px;                     /* bigger on desktop */
+  max-height: clamp(90px, 12vw, 160px); /* scales with viewport, caps nicely */
+  object-fit: contain;
+  padding: 8px 12px;
+}
+html { scroll-behavior: smooth; }
+
 </style>
 </head>
 <body>
   <header>
     <div class="container nav">
+        <a href="index.html" class="brand" style="text-decoration:none;">
       <div class="brand">
         <div class="logo">Æ</div>
         <div>ARCH-é-decon</div>
       </div>
+    </a>
       <nav class="links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
@@ -155,47 +204,20 @@ ul{margin:8px 0 0 18px}
     </section>
 
 
-      <section id="clients" aria-labelledby="clients-title" style="margin-top:28px">
-        <h3 id="clients-title">Our Happy Clients</h3>
-        <!-- <p class="badge" style="margin:8px 0 14px">Logos below are placeholders — replace with your own.</p> -->
+    <section id="clients" aria-labelledby="clients-title" style="margin-top:28px">
+    <h3 id="clients-title">Our Happy Clients</h3>
         <div class="grid cols-4" style="margin-top:12px">
-          <!-- Replace src with your actual logo/image paths or URLs.
-               Recommended: place files in /logos and update the src values.
-               Example: <img src="logos/nha.png" alt="National Highway Authority"> -->
-          <figure class="card" style="text-align:center">
-            <img src="images/NHA.png" alt="Client logo 1" style="max-width:100%;height:auto;object-fit:contain;padding-top: 25px;">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">National Highway Authority</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/Wasa.png" alt="Client logo 2" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Water and Sanitation Authority</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/Nishat.png" alt="Client logo 3" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Nishat Chunian</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/WCLA.png" alt="Client logo 4" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Walled City of Lahore Authority</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/RingRoad.png" alt="Client logo 5" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Client Name 5</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/Warid.png" alt="Client logo 6" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Client Name 6</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/LDA.png" alt="Client logo 6" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Client Name 6</figcaption> -->
-          </figure>
-          <figure class="card" style="text-align:center">
-            <img src="images/BOP.png" alt="Client logo 6" style="max-width:100%;height:auto;object-fit:contain">
-            <!-- <figcaption style="margin-top:8px;color:#94a3b8;font-size:14px">Client Name 6</figcaption> -->
-          </figure>
+            <figure class="card"><img class="client-logo" src="images/NHA.png"      alt="National Highway Authority"></figure>
+            <figure class="card"><img class="client-logo" src="images/Wasa.png"     alt="Water and Sanitation Authority"></figure>
+            <figure class="card"><img class="client-logo" src="images/Nishat.png"   alt="Nishat Chunian"></figure>
+            <figure class="card"><img class="client-logo" src="images/WCLA.png"     alt="Walled City of Lahore Authority"></figure>
+            <figure class="card"><img class="client-logo" src="images/RingRoad.png" alt="Lahore Ring Road Authority"></figure>
+            <figure class="card"><img class="client-logo" src="images/Warid.png"    alt="Warid"></figure>
+            <figure class="card"><img class="client-logo" src="images/LDA.png"      alt="Lahore Development Authority"></figure>
+            <figure class="card"><img class="client-logo" src="images/BOP.png"      alt="Bank of Punjab"></figure>
         </div>
-      </section>
+    </section>
+
 
   <section id="about">
       <h2>About</h2>
