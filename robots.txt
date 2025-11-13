@@ -1,0 +1,5 @@
+# robots.txt for https://archedecon.com
+User-agent: *
+Allow: /
+
+Sitemap: https://archedecon.com/sitemap.xml
